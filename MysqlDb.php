@@ -10,6 +10,11 @@ class MysqlDB {
 
    public function __construct($host, $username, $password, $db) {
       $this->_mysql = new mysqli($host, $username, $password, $db) or die('There was a problem connecting to the database');
+      
+      /* change character set to utf8 */
+   	if (!$this->_mysql->set_charset("utf8")) {
+		    printf("Error loading character set utf8: %s\n", $this->_mysql->error);
+		}
    }
 
    /**
